@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet" href="C:\Users\austi\Desktop\GROUP21 project\Stu-link\Stu-link CSS\login_form(lecturer).css">
+        <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="jquery.validate.js"></script>
+    </head>
+
+    <body background="Stu-link IMAGES/Lecturer_login bg.JPG">
+        <h1>LECTURERS SIGN UP FORM</h1>
+        <form action="#" class="form" id="lecture-reg">
+            <legend>Fill in the form to connect with us</legend>
+            <div class="Firstsec">
+              <label for="Firstname">Firstname: 
+                  <input type="text" placeholder="Firstname" id="f_name"></label><br>
+                <br>
+               <label for="Lastname">Lastname: 
+                   <input type="text" placeholder="Lastname" id="l_name"></label><br>
+               <br>
+               <label for="Gender">Gender: 
+                   <select id="Gender">
+                       <option value="Male" id="male">Male</option>
+                       <option value="Female" id="female">Female</option>
+                   </select>
+               </label><br>
+               <br>
+               <label for="e-mail">Email:   
+                   <input type="text" id="email" placeholder="smith@exampe.com">
+               </label><br>
+               <br>
+                <label for="institution">Institution: 
+                    <input type="text" placeholder="Where do you teach?" id="institution">
+                </label><br>
+                <br>
+                <label for="qualifications">Qualifications: 
+                    <br>
+                    <textarea cols="20" rows="5" style="margin-left: 110px;"></textarea>
+                </label><br>
+                <br>
+                <label for="picofid">Picture of ID: <input type="file" accept="IMAGE/*"></label>
+            </div>
+            <br>
+            <legend>Create your password</legend>
+            <div class="Secondsec">
+                <br>
+                <br>
+               <label for="create password">Create password: 
+                   <input type="password" id="pass1" style="margin-right: 1px;">
+                   <span id="pass-length" style="color: red; size: 12px;"></span>
+               </label><br>
+               <br>
+               <label for="verify password"  style="margin-right:2%;">Verify password:
+                   <input type ="password" id="pass2" style="margin-right: 2px;">
+                   <span id="pass-veri" style='color: red; size: 12px;'></span>
+               </label><br>
+               <br>
+               <button class="buttons" type="submit">Sign-up</button>
+
+            </div>
+        </form>
+        <script type="text/javascript">
+            $(function() {
+                $("#pass-veri").hide();
+                $("#pass-length").hide();
+
+                var pass_length_error= false;
+                var pass_veri_error = false;
+
+                $("#pass1").focusout(function() {
+                    check_pass_length();
+                })
+
+                $("#pass2").focusout(function() {
+                    check_pass_veri();
+                })
+
+                function check_pass_length() {
+                    var pass_long = $("#pass1").val().length;
+
+                    if(pass_long < 8) {
+                        $("#pass-length").html("Atleast 8 characters")
+                        $("#pass-length").show();
+                        $("#pass1").css("border-bottom", "4px solid red");
+                        pass_length_error = true;
+                    }
+
+                    else {
+                        $("#pass-length").hide();
+                        $("#pass1").css("border-bottom", "4px solid green");
+                    }
+                }
+
+                function check_pass_veri() {
+                    var entry1 = $("#pass1").val();
+                    var entry2 = $("#pass2").val();
+
+                    if (entry1 !== entry2) {
+                        $("#pass-veri").html("Passwords don't match");
+                        $("#pass-veri").show();
+                        $("#pass2").css("border-bottom", "4px solid red");
+                        pass_veri_error = true;
+                    }
+                    
+                    else {
+                        $("#pass-veri").hide();
+                        $("#pass2").css("border-bottom", "4px solid green");
+                    }
+                }
+
+                $("#lecture-reg").submit(function() {
+                    pass_length_error = false;
+                    pass_veri_error = false;
+
+                    check_pass_length();
+                    check_pass_veri();
+
+                    if (pass_length_error === false && pass_veri_error === false) {
+                        alert("You can submitted your form!");
+                        return true;
+                    }
+                    else {
+                        alert("Please fill in the form correctly");
+                        return false;
+                    }
+                })
+            })
+        </script>
+    </body>
+</html>

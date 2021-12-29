@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="C:\Users\austi\Desktop\GROUP21 project\Stu-link\Stu-link CSS\login_form.css">
+        <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="jquery.validate.js"></script>
+        
+    </head>
+    <body background="Stu-link IMAGES/Student_login bg.JPG">
+        <h1>STUDENTS SIGN UP FORM</h1>
+        <form action="#" class="form" id="registration">
+            <legend>Fill in the form to connect with us</legend>
+
+            <div class="Firstsec">
+               
+                <label for="firstname">Firstname:
+                     <input type="text" placeholder="Firstname" name="firstname" id="f_name">
+                 </label> 
+                <br>
+                <br>
+                <label for="Lastname">Lastname: 
+                    <input type="text" placeholder="Lastname" style="width:max-content" id="f_name">
+                </label> 
+                <br>
+                <br>
+                <label for="gender">Gender: 
+                    <select name="Gender" id="gender">
+                        <option value="Male" id="male">Male</option>
+                        <option value="Female" id="male">Female</option>
+                    </select>
+                <br>
+                <br>
+                <label for="e-mail">E-mail: 
+                    <input type="text" placeholder="smith@example.com" style="width: 200px;" id="e_mail">
+                </label>
+                <br>
+                <br>
+                <label for="institution">Institution: 
+                    <input type="text" placeholder="where do you do your studies" style="width: 180px;">
+                </label>
+                <br>
+                <br>
+                <label for="sendid">Picture of ID: 
+                    <input type="file" accept="image/*">
+                </label>
+
+            </div>
+            <br>
+            <legend>Create your Password</legend>
+            <div class="Secondsec">
+                <br>
+                <br>
+                <label for="password">Create password: 
+                    <input type="password" style="margin-right: 1px;" id="pass1">
+                <span class="error_form" id="pass_char_error" style="color: red; size: 12px;"></span>
+                </label> 
+                <br>
+                <br>
+                <label for="veri-pass" style="margin-right:2%;">Verify password: 
+                  <input type="password" style="margin-right: 2px;" id="pass2">
+                  <span class="error_form" id="veri_pass_error" style="color: red; size: 12px;"></span>
+                </label><br>
+                <br>
+                
+                <button type="submit" class="buttons">sign-up</button>
+            </div>
+
+        </form>
+        <script type="text/javascript">
+            $(function() {
+                $("#pass_char_error").hide();
+                $("#veri_pass_error").hide();
+
+                var pass_char_error = false;
+                var veri_pass_error = false;
+
+                $("#pass1").focusout(function() {
+                    check_pass_char();
+                })
+
+                $("#pass2").focusout(function() {
+                    check_veri_pass();
+                })
+
+                function check_pass_char() {
+                    var pass_length = $("#pass1").val().length;
+                    if(pass_length < 8) {
+                        $("#pass_char_error").html("Atleast 8 characters");
+                        $("#pass_char_error").show();
+                        $("#pass1").css("border-bottom", "4px solid red");
+                        pass_char_error = true;
+                    } else {
+                        $("#pass_char_error").hide();
+                        $("#pass1").css("border-bottom", "4px solid green");
+                    }
+                }
+
+                function check_veri_pass() {
+                    var pass1 = $("#pass1").val();
+                    var pass2 = $("#pass2").val();
+
+                    if (pass1 !== pass2) {
+                        $("#veri_pass_error").html("Passwords don't match");
+                        $("#veri_pass_error").show();
+                        $("#pass2").css("border-bottom", "4px solid red");
+                        veri_pass_error = true;
+                    } else {
+                        $("#veri_pass_error").hide();
+                        $("#pass2").css("border-bottom", "4px solid green");
+                    }
+                }
+
+                $("#registration").submit(function() {
+                    var pass_char_error = false;
+                    var veri_pass_error = false;
+
+                    check_pass_char();
+                    check_veri_pass();
+
+                    if(pass_char_error == false && veri_pass_error == false) {
+                        alert("Registration is successful");
+                        return true;
+                    }
+                    else {
+                        alert("Please fill in the form correctly");
+                        return false;
+                    }
+                });
+            });
+        </script>
+
+    </body>
+</html>
